@@ -346,7 +346,7 @@
                     <div class="bg-white p-2 rounded-xl shadow-lg border border-gray-100 transform rotate-1 hover:rotate-0 transition duration-500">
                         <div class="relative overflow-hidden rounded-lg group h-64 md:h-80 bg-gray-100 flex items-center justify-center">
                             <!-- Esta imagen busca Ej2.png. Si no está, carga una de internet con onerror -->
-                            <img src="Ej.2.png" 
+                            <img src="Ej2.png" 
                                  alt="Imagen de la Actividad 2" 
                                  class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1497436072909-60f360e1d4b0?q=80&w=2560&auto=format&fit=crop'; this.nextElementSibling.style.display='flex';"
@@ -366,11 +366,28 @@
                     <!-- VIDEO EMBEBIDO (YouTube) -->
                     <div class="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
                         <h4 class="font-bold text-gray-700 mb-3"><i class="fab fa-youtube text-red-600"></i> Video Relacionado</h4>
-                        <div class="relative pb-[56.25%] h-0 rounded-lg overflow-hidden bg-black">
-                            <!-- Video actualizado: Nuevo enlace proporcionado por el usuario -->
-                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/bNW9jA4vCqE?si=lS8Q52Bs_kmybZXN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        
+                        <!-- Contenedor del video con fondo gris por si tarda en cargar -->
+                        <div class="relative pb-[56.25%] h-0 rounded-lg overflow-hidden bg-gray-200">
+                            <!-- URL limpia y uso de youtube-nocookie para evitar bloqueos en local -->
+                            <iframe 
+                                class="absolute top-0 left-0 w-full h-full" 
+                                src="https://www.youtube-nocookie.com/embed/bNW9jA4vCqE" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
-                        <p class="text-xs text-gray-500 mt-2 text-center">Video explicativo: ¿Qué es el ODS 13?</p>
+                        
+                        <div class="flex justify-between items-center mt-3">
+                            <p class="text-xs text-gray-500">Video explicativo: Acciones Sostenibles</p>
+                            <!-- Botón de respaldo por si el navegador bloquea el iframe localmente -->
+                            <a href="https://www.youtube.com/watch?v=bNW9jA4vCqE" target="_blank" rel="noopener noreferrer" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded hover:bg-red-200 transition">
+                                <i class="fas fa-external-link-alt"></i> Ver en YouTube si no carga
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -379,14 +396,42 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-emerald-900 text-emerald-100 py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="font-bold text-lg mb-2">Cuaderno Digital de Sostenibilidad</p>
-            <p class="text-sm opacity-80 mb-4">Creado para la asignatura: Sostenibilidad aplicada al sistema productivo</p>
-            <div class="border-t border-emerald-800 pt-4 flex justify-center gap-4 text-sm">
-                <span>Ana Maria da Cunha Goncalves</span>
-                <span>•</span>
-                <span>2025</span>
+    <footer class="bg-gradient-to-r from-emerald-900 to-teal-900 text-emerald-100 py-10 mt-12 relative overflow-hidden">
+        <!-- Decoración de fondo animada -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] animate-pulse"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                
+                <!-- Columna Izquierda: Instituto -->
+                <div class="footer-anim opacity-0 transform translate-y-4 transition duration-700 ease-out delay-100">
+                    <p class="text-xs uppercase tracking-widest text-emerald-400 mb-1">Instituto</p>
+                    <h3 class="font-bold text-xl text-white"><i class="fas fa-university mr-2"></i>IES Avempace</h3>
+                    <p class="text-sm">Zaragoza</p>
+                </div>
+
+                <!-- Columna Central: Datos Alumno -->
+                <div class="footer-anim opacity-0 transform translate-y-4 transition duration-700 ease-out delay-300 bg-white/10 px-6 py-3 rounded-xl backdrop-blur-sm border border-white/10">
+                    <p class="text-xs uppercase tracking-widest text-emerald-300 mb-1 text-center">Alumno/a</p>
+                    <p class="font-bold text-lg text-white mb-1">Ana Maria da Cunha Goncalves</p>
+                    <div class="flex justify-center gap-4 text-xs opacity-80">
+                        <span><i class="fas fa-graduation-cap mr-1"></i> Curso 2024/2025</span>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Fecha Dinámica -->
+                <div class="footer-anim opacity-0 transform translate-y-4 transition duration-700 ease-out delay-500">
+                    <p class="text-xs uppercase tracking-widest text-emerald-400 mb-1">Fecha de Entrega</p>
+                    <p class="font-bold text-xl text-white" id="fecha-hoy">Cargando...</p>
+                    <p class="text-xs text-emerald-300 mt-1">Sostenibilidad Aplicada</p>
+                </div>
+            </div>
+
+            <!-- Copyright inferior -->
+            <div class="border-t border-emerald-800/50 mt-8 pt-6 text-center text-xs opacity-60 footer-anim opacity-0 transition duration-1000 delay-700">
+                <p>&copy; 2025 Cuaderno Digital. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -394,6 +439,15 @@
     <!-- SCRIPT PARA ANIMACIONES -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. Script de Fecha Automática (Formato: 23 de Noviembre de 2025)
+            const fechaElement = document.getElementById('fecha-hoy');
+            if(fechaElement) {
+                const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
+                const hoy = new Date().toLocaleDateString('es-ES', opciones);
+                fechaElement.innerHTML = `<i class="far fa-calendar-check mr-2"></i>${hoy}`;
+            }
+
+            // 2. Observer para animaciones generales (fade-in-section)
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -404,15 +458,30 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Animación solo una vez
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            const sections = document.querySelectorAll('.fade-in-section');
-            sections.forEach(section => {
+            document.querySelectorAll('.fade-in-section').forEach(section => {
                 observer.observe(section);
             });
+
+            // 3. Observer específico para el Footer (Efecto cascada)
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Selecciona todos los elementos con clase .footer-anim DENTRO del footer
+                        entry.target.querySelectorAll('.footer-anim').forEach(el => {
+                            el.classList.remove('opacity-0', 'translate-y-4'); // Quita estado inicial invisible
+                        });
+                        footerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 }); // Se activa cuando se ve la mitad del footer
+
+            const footer = document.querySelector('footer');
+            if(footer) footerObserver.observe(footer);
         });
     </script>
 </body>
